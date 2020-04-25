@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Copyright (c) 2020 Gaël PORTAY
+#
+# SPDX-License-Identifier: LGPL-2.1+
+#
+
+set -e
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --)
+            break
+            ;;
+        -*)
+            _args+=("$1")
+            ;;
+        *)
+            break
+            ;;
+    esac
+    shift
+done
+
+exec "/usr/bin/${0##*/}" "${_args[@]}" "EUID=$EUID" "PATH=${0%/*}:/usr/bin:/bin" "$@"

@@ -2,6 +2,7 @@ DOCKER_USER:=pierres
 DOCKER_ORGANIZATION=archlinux
 DOCKER_IMAGE:=base
 
+rootfs: PATH:=$(CURDIR)/fakechroot:$(PATH)
 rootfs:
 	$(eval TMPDIR := $(shell mktemp -d))
 	cp /usr/share/devtools/pacman-extra.conf rootfs/etc/pacman.conf

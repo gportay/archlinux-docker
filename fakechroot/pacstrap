@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# Copyright (c) 2020 Gaël PORTAY
+#
+# SPDX-License-Identifier: LGPL-2.1+
+#
+
+set -e
+
+fakeroot -- \
+fakechroot -e "${0%/*}/pacstrap.env" -b "${0%/*}" -- \
+exec "/usr/bin/${0##*/}" "$@"
